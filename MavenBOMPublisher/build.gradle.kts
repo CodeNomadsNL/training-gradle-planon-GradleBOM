@@ -1,3 +1,9 @@
+buildscript {
+  repositories {
+    mavenLocal()
+  }
+}
+
 plugins {
   `java-platform` //Plugin used to build Maven BOM
   `maven-publish` //Plugin used to publish Maven BOM
@@ -29,29 +35,29 @@ dependencies {
 
 
 //Publishing to Maven repository
-publishing {
-  repositories {
-    maven{
-      //Properties from ./gradle/gradle.properties to variable mapping
-      val localMavenUser: String by extra
-      val localMavenPassword: String by extra
-
-      //Publishing Maven repository URL and credentials
-      url = uri("http://localhost:8081/repository/maven-snapshots/")
-      credentials {
-        username = localMavenUser
-          password = localMavenPassword
-      }
-    }
-  }
-
-  //Defines Maven BOM as valid publication
-  publications {
-    create<MavenPublication>("myPlatform") {
-      from(components["javaPlatform"])
-    }
-  }
-}
+//publishing {
+//  repositories {
+//    maven{
+//      //Properties from ./gradle/gradle.properties to variable mapping
+//      val localMavenUser: String by extra
+//      val localMavenPassword: String by extra
+//
+//      //Publishing Maven repository URL and credentials
+//      url = uri("http://localhost:8081/repository/maven-snapshots/")
+//      credentials {
+//        username = localMavenUser
+//          password = localMavenPassword
+//      }
+//    }
+//  }
+//
+//  //Defines Maven BOM as valid publication
+//  publications {
+//    create<MavenPublication>("myPlatform") {
+//      from(components["javaPlatform"])
+//    }
+//  }
+//}
 
 
 
